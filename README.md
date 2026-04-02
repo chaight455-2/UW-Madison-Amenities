@@ -1,4 +1,4 @@
-# Team Name
+# University of Wisconsin Madison Utilities Map
 
 ### Team Members
 Nolan Hegge, Charlie Haight, Aidan Schooff
