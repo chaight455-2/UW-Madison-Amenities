@@ -26,7 +26,10 @@ TODO:
         3. Campus Building Hours Data
 
 
-3. Wireframes
+3. Wireframes:
+
+The wireframes pictured below help show off some of the core functionality and operators of the campus utility map that our group plans to create.
+
 Wireframe showing primary functionality such as filter, search, zoom/pan, and retreive, : 
 ![alt text](https://github.com/chaight455-2/webmapping_final_group_project/blob/project-proposal/img/PrimaryMap.jpg "Primary Map")
 
