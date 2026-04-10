@@ -1,19 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>UW-Madison Amenities</title>
 
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+        <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="css/style.css">
     </head>
 
-    <body>
+    <body class="m-0 p-0 h-full font-sans">
+        <div id="search-container" class="absolute top-2.5 left-1/2 -translate-x-1/2 z-[1000] w-[90%] max-w-[400px]">
+            <input type="text" id="search-bar" class="w-full px-3.5 py-2.5 text-base border-none rounded-lg shadow-md outline-none box-border" placeholder="Search buildings...">
+        </div>
+
+        <div id="filter-panel" class="absolute bottom-0 left-0 w-full md:top-2.5 md:bottom-auto md:left-2.5 md:w-[220px] bg-white z-[1000] px-4 py-3 md:p-3.5 shadow-md rounded-t-xl md:rounded-lg box-border">
+            <h3 class="m-0 mb-2 text-sm text-gray-700">Amenities</h3>
+        </div>
+
         <div id="map"></div>
 
         <script type="text/javascript" src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
         <script type="text/javascript" src="lib/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/util.js"></script>
+        <script type="text/javascript" src="js/popup.js"></script>
+        <script type="text/javascript" src="js/map.js"></script>
+        <script type="text/javascript" src="js/data.js"></script>
+        <script type="text/javascript" src="js/buildings.js"></script>
+        <script type="text/javascript" src="js/filter.js"></script>
+        <script type="text/javascript" src="js/search.js"></script>
+        <script type="text/javascript" src="js/geolocation.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>
