@@ -29,7 +29,7 @@ function initFilter(map, buildingLayer) {
         checkbox.className = 'w-4 h-4 m-0';
         checkbox.value = amenity.type;
         checkbox.checked = true;
-        checkbox.style.accentColor = amenity.color;
+        checkbox.style.accentColor = '#4285f4';
 
         var dot = document.createElement('span');
         dot.className = 'inline-block w-2.5 h-2.5 rounded-full';
