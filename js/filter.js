@@ -1,19 +1,35 @@
 // Initialize the filter panel with amenity checkboxes
 function initFilter(map, buildingLayer) {
     var panel = document.getElementById('filter-panel');
+    var toggle = document.getElementById('filter-toggle');
+    var icon = document.getElementById('filter-icon');
+    var list = document.getElementById('filter-list');
     var activeFilters = [];
+
+    // Toggle expand/collapse
+    toggle.addEventListener('click', function() {
+        var open = list.style.display !== 'none';
+        list.style.display = open ? 'none' : 'block';
+        // Swap hamburger / X icon
+        if (open) {
+            icon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+        } else {
+            icon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>';
+        }
+    });
 
     // Build checkbox for each amenity type
     for (var i = 0; i < CONFIG.AMENITIES.length; i++) {
         var amenity = CONFIG.AMENITIES[i];
         var row = document.createElement('label');
-        row.className = 'inline-flex md:flex items-center gap-1 mr-3 md:mr-0 mb-1 md:mb-1.5 text-sm cursor-pointer';
+        row.className = 'flex items-center gap-2 py-1 cursor-pointer text-[13px] text-gray-700';
 
         var checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.className = 'w-[18px] h-[18px] m-0';
+        checkbox.className = 'w-4 h-4 m-0';
         checkbox.value = amenity.type;
         checkbox.checked = true;
+        checkbox.style.accentColor = amenity.color;
 
         var dot = document.createElement('span');
         dot.className = 'inline-block w-2.5 h-2.5 rounded-full';
@@ -24,7 +40,7 @@ function initFilter(map, buildingLayer) {
         row.appendChild(checkbox);
         row.appendChild(dot);
         row.appendChild(text);
-        panel.appendChild(row);
+        list.appendChild(row);
 
         activeFilters.push(amenity.type);
     }

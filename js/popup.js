@@ -10,7 +10,7 @@ function buildBuildingPopup(feature) {
     var html = '<div>';
     html += '<h3 class="m-0 mb-1 text-base">' + props.name + '</h3>';
     html += '<span class="' + statusClasses + '">' + statusText + '</span>';
-    html += '<div class="text-xs text-gray-500 mb-1.5">' + formatHours(props.hours) + '</div>';
+    html += '<details class="text-xs text-gray-500 mb-1.5"><summary class="cursor-pointer list-none font-medium">Hours &#9662;</summary><div class="mt-1">' + formatHours(props.hours) + '</div></details>';
     html += '<div><h4 class="my-1 text-[13px]">Amenities</h4>';
 
     for (var i = 0; i < CONFIG.AMENITIES.length; i++) {
