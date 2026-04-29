@@ -12,12 +12,15 @@ function createMap() {
     var map = L.map('map', {
         center: CONFIG.CENTER,
         zoom: CONFIG.ZOOM,
-        zoomControl: false
+        zoomControl: false,
+        maxBoundsViscosity: 1.0,
+        maxZoom: 19
     });
 
     L.tileLayer(CONFIG.TILE_URL, {
         attribution: CONFIG.TILE_ATTRIBUTION
     }).addTo(map);
 
+    window.__map = map;
     return map;
 }

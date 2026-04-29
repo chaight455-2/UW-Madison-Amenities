@@ -1,5 +1,5 @@
 // Initialize geolocation to show user's current position
-function initGeolocation(map) {
+function initGeolocation(map, campusBounds) {
     if (!navigator.geolocation) return;
 
     var userMarker = null;
@@ -19,8 +19,12 @@ function initGeolocation(map) {
             L.DomEvent.disableClickPropagation(container);
             L.DomEvent.on(btn, 'click', function(e) {
                 L.DomEvent.preventDefault(e);
-                if (userMarker) {
-                    map.setView(userMarker.getLatLng(), 17);
+                if (!userMarker) return;
+                var latlng = userMarker.getLatLng();
+                if (campusBounds.contains(latlng)) {
+                    map.flyTo(latlng, 17, { duration: 1.5 });
+                } else {
+                    map.flyToBounds(campusBounds, { padding: [10, 10] });
                 }
             });
 
@@ -50,8 +54,11 @@ function initGeolocation(map) {
                 }).addTo(map);
                 userMarker.bindPopup('You are here');
 
-                // Zoom to user on first location fix
-                map.setView([lat, lng], 17);
+                // On first fix: slowly fly to the user only if they're inside campus.
+                // Otherwise leave the view focused on campus (already framed by main.js).
+                if (campusBounds.contains([lat, lng])) {
+                    map.flyTo([lat, lng], 17, { duration: 2.5 });
+                }
 
                 // Show the locate button now that we have a position
                 locateControl._container.style.display = '';

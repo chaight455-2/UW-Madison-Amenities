@@ -1,11 +1,12 @@
 // Check if a building is currently open based on its hours
 // hours: object with keys like "monday", "tuesday", etc.
 // each value: { open: "07:00", close: "22:00" } or null if closed that day
-function isBuildingOpen(hours) {
+// when: optional Date to evaluate against; defaults to now
+function isBuildingOpen(hours, when) {
     if (!hours) return true; // assume open if no hours data
 
     var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-    var now = new Date();
+    var now = when || new Date();
     var day = days[now.getDay()];
     var dayHours = hours[day];
 
@@ -122,7 +123,7 @@ function csvRowToBuildingProps(row) {
     var mw = amenity(row.num_microwaves, row.floor_microwave, 'See building directory');
     var fr = amenity(row.num_refrigerators, row.floor_refrigerator, 'See building directory');
     var vd = amenity(row.num_vending_machines, row.floor_vending_machine, 'See building directory');
-    var cp = amenity(row.num_public_computers, row.floor_public_computers, 'See building directory');
+    var cp = amenity(row.num_public_computer_labs, row.floor_public_computers, 'See building directory');
     var pr = amenity(row.num_printers_copiers, row.floor_printers_copiers, 'See building directory');
 
     return {

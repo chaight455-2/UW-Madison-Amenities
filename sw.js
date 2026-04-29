@@ -1,4 +1,4 @@
-var CACHE_VERSION = 'uw-amenities-v1';
+var CACHE_VERSION = 'uw-amenities-v2';
 
 var PRECACHE_URLS = [
     './',
