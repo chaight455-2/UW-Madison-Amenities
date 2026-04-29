@@ -6,11 +6,13 @@
         var boundaryLayer = addBoundary(map, data.boundary);
         var buildingLayer = addBuildings(map, data.buildings);
 
-        map.fitBounds(boundaryLayer.getBounds(), { padding: [10, 10] });
+        var campusBounds = boundaryLayer.getBounds();
+        map.setMaxBounds(campusBounds);
+        map.setMinZoom(map.getBoundsZoom(campusBounds));
+        map.fitBounds(campusBounds, { padding: [10, 10] });
 
         initFilter(map, buildingLayer);
         initSearch(map, buildingLayer);
+        initGeolocation(map, campusBounds);
     });
-
-    initGeolocation(map);
 })();

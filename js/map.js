@@ -12,7 +12,9 @@ function createMap() {
     var map = L.map('map', {
         center: CONFIG.CENTER,
         zoom: CONFIG.ZOOM,
-        zoomControl: false
+        zoomControl: false,
+        maxBoundsViscosity: 1.0,
+        maxZoom: 19
     });
 
     L.tileLayer(CONFIG.TILE_URL, {
