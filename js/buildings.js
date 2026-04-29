@@ -2,7 +2,7 @@
 function addBuildings(map, data) {
     var buildingLayer = L.geoJson(data, {
         style: function(feature) {
-            return getBuildingStyle(feature);
+            return getBuildingStyle(feature, getCheckTime());
         },
         onEachFeature: function(feature, layer) {
             layer.bindPopup(buildBuildingPopup(feature));
@@ -46,8 +46,9 @@ function addBoundary(map, boundary) {
 }
 
 // Return style object for a building based on open/closed status
-function getBuildingStyle(feature) {
-    var open = isBuildingOpen(feature.properties.hours);
+// when: optional Date to evaluate against; defaults to now
+function getBuildingStyle(feature, when) {
+    var open = isBuildingOpen(feature.properties.hours, when);
 
     return {
         fillColor: open ? CONFIG.DEFAULT_COLOR : CONFIG.CLOSED_COLOR,

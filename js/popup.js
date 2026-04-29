@@ -1,7 +1,8 @@
 // Build popup HTML for a building feature
-function buildBuildingPopup(feature) {
+// when: optional Date to evaluate open/closed status against; defaults to now
+function buildBuildingPopup(feature, when) {
     var props = feature.properties;
-    var open = isBuildingOpen(props.hours);
+    var open = isBuildingOpen(props.hours, when);
     var statusClasses = open
         ? 'inline-block px-2 py-0.5 rounded text-xs font-bold mb-1.5 bg-green-100 text-green-800'
         : 'inline-block px-2 py-0.5 rounded text-xs font-bold mb-1.5 bg-red-100 text-red-800';

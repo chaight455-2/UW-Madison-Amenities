@@ -1,11 +1,12 @@
 // Check if a building is currently open based on its hours
 // hours: object with keys like "monday", "tuesday", etc.
 // each value: { open: "07:00", close: "22:00" } or null if closed that day
-function isBuildingOpen(hours) {
+// when: optional Date to evaluate against; defaults to now
+function isBuildingOpen(hours, when) {
     if (!hours) return true; // assume open if no hours data
 
     var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-    var now = new Date();
+    var now = when || new Date();
     var day = days[now.getDay()];
     var dayHours = hours[day];
 

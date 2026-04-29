@@ -1,3 +1,8 @@
+// Time-of-check state. null = use the system's current time.
+// Module-scoped so buildings.js can read it via getCheckTime().
+var checkTime = null;
+function getCheckTime() { return checkTime; }
+
 // Initialize the filter panel with amenity checkboxes
 function initFilter(map, buildingLayer, dotsLayer) {
     var panel = document.getElementById('filter-panel');
@@ -5,6 +10,44 @@ function initFilter(map, buildingLayer, dotsLayer) {
     var icon = document.getElementById('filter-icon');
     var list = document.getElementById('filter-list');
     var activeFilters = [];
+
+    // Wire up the time-of-check picker (day-of-week + time-of-day)
+    var dayInput = document.getElementById('check-day');
+    var timeInput = document.getElementById('check-time');
+    var resetBtn = document.getElementById('check-time-reset');
+
+    function updateCheckTime() {
+        var dayVal = dayInput.value;     // '' = today; '0'..'6' = Sun..Sat
+        var timeVal = timeInput.value;   // '' or 'HH:MM'
+
+        if (dayVal === '' && timeVal === '') {
+            checkTime = null;
+        } else {
+            var d = new Date();
+            if (dayVal !== '') {
+                var target = parseInt(dayVal, 10);
+                d.setDate(d.getDate() + ((target - d.getDay() + 7) % 7));
+            }
+            if (timeVal !== '') {
+                var parts = timeVal.split(':');
+                d.setHours(parseInt(parts[0], 10), parseInt(parts[1], 10), 0, 0);
+            }
+            checkTime = d;
+        }
+
+        buildingLayer.eachLayer(function(layer) {
+            layer.setStyle(getBuildingStyle(layer.feature, checkTime));
+        });
+        updateBuildingVisibility(buildingLayer, activeFilters);
+    }
+
+    dayInput.addEventListener('change', updateCheckTime);
+    timeInput.addEventListener('input', updateCheckTime);
+    resetBtn.addEventListener('click', function() {
+        dayInput.value = '';
+        timeInput.value = '';
+        updateCheckTime();
+    });
 
     // Toggle expand/collapse
     toggle.addEventListener('click', function() {
