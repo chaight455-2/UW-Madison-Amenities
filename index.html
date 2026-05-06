@@ -112,8 +112,16 @@
                 <div class="legend-row"><span class="legend-dot" style="background:#9b59b6"></span><span>Public Computer Labs</span></div>
                 <div class="legend-row"><span class="legend-dot" style="background:#f39c12"></span><span>Printers/Copy Machines</span></div>
 
-                <h3>Open/closed status</h3>
-                <p>Each building shows a green <strong>Open</strong> or red <strong>Closed</strong> badge based on the building's hours. Tap <em>Hours</em> in the popup to see the full weekly schedule.</p>
+                <h3>Building symbolization</h3>
+                <div class="symbol-row">
+                    <svg class="symbol-figure" viewBox="0 0 110 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="5" y="8" width="40" height="34" fill="#3388ff" stroke="#333" stroke-width="1"/>
+                        <text x="25" y="30" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif" font-weight="bold">OPEN</text>
+                        <rect x="65" y="8" width="40" height="34" fill="#c0392b" stroke="#333" stroke-width="1"/>
+                        <text x="85" y="30" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif" font-weight="bold">CLOSED</text>
+                    </svg>
+                    <p class="symbol-text">Buildings are colored by their open/closed status: <strong style="color:#3388ff">blue</strong> means the building is currently open, and <strong style="color:#c0392b">red</strong> means it is closed.</p>
+                </div>
                 <p>Want to plan ahead? Use the <strong>Check open at</strong> day and time picker inside the Filters menu to see which buildings will be open at a future day or time. Choose <em>Current time</em> in the time dropdown to reset to the current time.</p>
             </div>
         </div>
