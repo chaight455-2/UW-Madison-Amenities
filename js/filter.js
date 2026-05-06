@@ -116,10 +116,17 @@ function updateBuildingVisibility(buildingLayer, activeFilters) {
             }
         }
 
+        var base = getBuildingStyle(layer.feature, getCheckTime());
         if (hasActiveAmenity || activeFilters.length === 0) {
-            layer.setStyle({ opacity: 1, fillOpacity: 0.4 });
+            layer.setStyle(base);
         } else {
-            layer.setStyle({ opacity: 0.2, fillOpacity: 0.1 });
+            layer.setStyle({
+                fillColor: base.fillColor,
+                weight: base.weight,
+                color: base.color,
+                opacity: 0.2,
+                fillOpacity: 0.1
+            });
         }
     });
 }
