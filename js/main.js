@@ -8,7 +8,7 @@
         var dotsLayer = createAmenityDotsLayer(map);
 
         var campusBounds = boundaryLayer.getBounds();
-        map.setMaxBounds(campusBounds);
+        map.setMaxBounds(campusBounds.pad(0.15));
         map.setMinZoom(map.getBoundsZoom(campusBounds));
         map.fitBounds(campusBounds, { padding: [10, 10] });
 

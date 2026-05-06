@@ -7,11 +7,11 @@ var CONFIG = {
     FOOTPRINTS_PATH: 'data/Building Footprints.geojson',
     BOUNDARY_PATH: 'data/Campus Boundary.json',
     AMENITIES: [
-        { type: 'microwaves', label: 'Microwaves', color: '#e74c3c', icon: '🔴' },
-        { type: 'refrigerators', label: 'Refrigerators', color: '#3498db', icon: '🔵' },
-        { type: 'vending', label: 'Vending Machines', color: '#2ecc71', icon: '🟢' },
-        { type: 'computers', label: 'Public Computer Labs', color: '#9b59b6', icon: '🟣' },
-        { type: 'printers', label: 'Printers/Copy Machines', color: '#f39c12', icon: '🟠' }
+        { type: 'microwaves', label: 'Microwaves', color: '#d55e00', icon: '🔴' },
+        { type: 'refrigerators', label: 'Refrigerators', color: '#0072b2', icon: '🔵' },
+        { type: 'vending', label: 'Vending Machines', color: '#009e73', icon: '🟢' },
+        { type: 'computers', label: 'Public Computer Labs', color: '#cc79a7', icon: '🟣' },
+        { type: 'printers', label: 'Printers/Copy Machines', color: '#e69f00', icon: '🟠' }
     ],
     CLOSED_COLOR: '#c0392b',
     OPEN_COLOR: '#2ecc71',
