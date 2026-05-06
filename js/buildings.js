@@ -30,7 +30,7 @@ function getBuildingStyle(feature, when) {
         weight: 1,
         opacity: 1,
         color: '#333',
-        fillOpacity: open ? 0.4 : 0.6
+        fillOpacity: 1
     };
 }
 
