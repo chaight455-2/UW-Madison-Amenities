@@ -1,4 +1,4 @@
-var CACHE_VERSION = 'uw-amenities-v2';
+var CACHE_VERSION = 'uw-amenities-v6';
 
 var PRECACHE_URLS = [
     './',
@@ -16,6 +16,7 @@ var PRECACHE_URLS = [
     './js/main.js',
     './lib/jquery-3.5.1.js',
     './data/buildings.geojson',
+    './img/UW_Amenities_Icon.svg',
     './manifest.json'
 ];
 
