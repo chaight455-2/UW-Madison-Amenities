@@ -3,6 +3,7 @@ function initGeolocation(map, campusBounds) {
     if (!navigator.geolocation) return;
 
     var userMarker = null;
+    var offCampusToast = createOffCampusToast();
 
     // Create locate-me button as a Leaflet control
     var LocateControl = L.Control.extend({
@@ -25,6 +26,7 @@ function initGeolocation(map, campusBounds) {
                     map.flyTo(latlng, 17, { duration: 1.5 });
                 } else {
                     map.flyToBounds(campusBounds, { padding: [10, 10] });
+                    offCampusToast.show();
                 }
             });
 
@@ -55,9 +57,12 @@ function initGeolocation(map, campusBounds) {
                 userMarker.bindPopup('You are here');
 
                 // On first fix: slowly fly to the user only if they're inside campus.
-                // Otherwise leave the view focused on campus (already framed by main.js).
+                // Otherwise leave the view focused on campus (already framed by main.js)
+                // and let the user know why we didn't zoom to them.
                 if (campusBounds.contains([lat, lng])) {
                     map.flyTo([lat, lng], 17, { duration: 2.5 });
+                } else {
+                    offCampusToast.show();
                 }
 
                 // Show the locate button now that we have a position
@@ -71,4 +76,36 @@ function initGeolocation(map, campusBounds) {
             enableHighAccuracy: true
         }
     );
+}
+
+// Toast banner shown when the user's location is outside campus,
+// so they understand why the map didn't zoom to them.
+function createOffCampusToast() {
+    var el = document.createElement('div');
+    el.id = 'off-campus-toast';
+    el.className = 'hidden';
+    el.setAttribute('role', 'status');
+    el.innerHTML = '<span>You\'re outside the UW-Madison campus area, so the map stayed centered on campus.</span>' +
+                   '<button type="button" aria-label="Dismiss">&times;</button>';
+    document.body.appendChild(el);
+
+    var hideTimer = null;
+    function hide() {
+        el.classList.remove('visible');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function() { el.classList.add('hidden'); }, 250);
+    }
+
+    el.querySelector('button').addEventListener('click', hide);
+
+    return {
+        show: function() {
+            el.classList.remove('hidden');
+            // Force reflow so the transition plays on first show
+            void el.offsetWidth;
+            el.classList.add('visible');
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hide, 6000);
+        }
+    };
 }
