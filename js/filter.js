@@ -117,7 +117,7 @@ function updateBuildingVisibility(buildingLayer, activeFilters) {
         }
 
         var base = getBuildingStyle(layer.feature, getCheckTime());
-        if (hasActiveAmenity || activeFilters.length === 0) {
+        if (hasActiveAmenity) {
             layer.setStyle(base);
         } else {
             layer.setStyle({
@@ -125,7 +125,7 @@ function updateBuildingVisibility(buildingLayer, activeFilters) {
                 weight: base.weight,
                 color: base.color,
                 opacity: 0.2,
-                fillOpacity: 0.1
+                fillOpacity: 0.2
             });
         }
     });
