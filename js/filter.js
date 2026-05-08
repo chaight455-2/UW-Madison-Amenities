@@ -81,6 +81,7 @@ function initFilter(map, buildingLayer, dotsLayer) {
         activeFilters.push(amenity.type);
     }
 
+    updateBuildingVisibility(buildingLayer, activeFilters);
     updateAmenityDots(map, dotsLayer, buildingLayer, activeFilters);
 
     // Re-wrap dots when zoom changes (building pixel width changes with zoom)
